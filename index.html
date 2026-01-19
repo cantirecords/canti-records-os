@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canti OS | Creative Business Operating System</title>
+  <meta name="description" content="The ultimate operating system for creative entrepreneurs, studio owners, and media agencies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#3713ec",
+            "accent-green": "#0bda6c",
+            "accent-amber": "#ffb020",
+            "background-dark": "#131022",
+            "surface-dark": "#1f1b34",
+            "surface-darker": "#1a162d",
+            "card-dark": "#1C192E",
+            "border-dark": "#2e2849",
+            "text-secondary": "#9b92c9"
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Noto Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #131022;
+      color: #f1f5f9;
+      margin: 0;
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #131022; }
+    ::-webkit-scrollbar-thumb { background: #2e2849; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3713ec; }
+
+    .matrix-bg {
+      background-image: radial-gradient(circle at 1px 1px, rgba(55, 19, 236, 0.05) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    @keyframes pulse-blue {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(55, 19, 236, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(55, 19, 236, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(55, 19, 236, 0); }
+    }
+    .timeline-pulse { animation: pulse-blue 2s infinite; }
+  </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="matrix-bg">
+  <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

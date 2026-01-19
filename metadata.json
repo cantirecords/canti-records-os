@@ -1,0 +1,8 @@
+{
+  "name": "Canti OS",
+  "description": "A creative-first business operating system for music and media solo operators, featuring a conversation-aware timeline, project checklists, and a studio-inspired dashboard.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
