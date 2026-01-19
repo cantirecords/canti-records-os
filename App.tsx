@@ -26,10 +26,18 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setLoading(false);
-    });
+    const checkSession = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        setSession(session);
+      } catch (error) {
+        console.error("Auth error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkSession();
 
     const {
       data: { subscription },
@@ -39,41 +47,6 @@ const App: React.FC = () => {
 
     return () => subscription.unsubscribe();
   }, []);
-
-  if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
-    return (
-      <div className="min-h-screen bg-[#131022] flex items-center justify-center p-6 font-sans">
-        <div className="max-w-md w-full bg-[#1f1b34] border border-red-500/30 rounded-[2.5rem] p-8 text-center shadow-2xl shadow-red-500/10">
-          <div className="size-16 bg-red-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <span className="material-symbols-outlined text-red-500 text-3xl">terminal</span>
-          </div>
-          <h1 className="text-white text-2xl font-bold mb-4">Configuración Incompleta</h1>
-          <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-            Las llaves de Supabase no se detectaron en Vercel. Necesitas agregar las variables de entorno para que el sistema pueda arrancar.
-          </p>
-          <div className="space-y-3 text-left bg-black/20 p-4 rounded-2xl font-mono text-[11px]">
-            <div className="flex justify-between text-yellow-500">
-              <span className="opacity-50">VARIABLE</span>
-              <span>ESTADO</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-slate-500">VITE_SUPABASE_URL</span>
-              <span className={import.meta.env.VITE_SUPABASE_URL ? "text-green-500" : "text-red-500"}>
-                {import.meta.env.VITE_SUPABASE_URL ? "OK" : "FALTANTE"}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-slate-500">VITE_SUPABASE_ANON_KEY</span>
-              <span className={import.meta.env.VITE_SUPABASE_ANON_KEY ? "text-green-500" : "text-red-500"}>
-                {import.meta.env.VITE_SUPABASE_ANON_KEY ? "OK" : "FALTANTE"}
-              </span>
-            </div>
-          </div>
-          <p className="text-slate-500 text-[10px] mt-6 uppercase tracking-widest font-bold">Instrucciones enviadas al chat</p>
-        </div>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
